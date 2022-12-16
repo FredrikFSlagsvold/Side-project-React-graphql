@@ -8,6 +8,7 @@ const{
     GraphQLType,
     GraphQLSchema,
     GraphQLNonNull,
+    GraphQLInt,
     GraphQLObjectType
 } = require("graphql")
 
@@ -21,17 +22,25 @@ mongoose
 .then(() => console.log("Connected to database..."))
 .catch(err => console.error(err));
 
-const PokemonModel = mongoose.model("Pokemon", {
-    name: String,    
-
+const PokemonModel = mongoose.model("pokemon", {
+    id: Number,
+    num: String,
+    name: String,
+    img: String,
+    type: [String],
+    weaknesses: [String],
 })
 
 const PokemonType = new GraphQLObjectType({
     name: "Pokemon",
     fields: {
         id: { type: GraphQLID },
-        name: { type: GraphQLString }
-    }
+        num: { type: GraphQLInt },
+        name: { type: GraphQLString },
+        img: { type: GraphQLString },
+        type: { type: GraphQLList(GraphQLString) },
+        weaknesses: { type: GraphQLList(GraphQLString) },
+    },
 })
 
 const schema = new GraphQLSchema({
@@ -43,12 +52,22 @@ const schema = new GraphQLSchema({
                 resolve: (root, args, context, info) => {
                     return PokemonModel.find().exec();
                 }
-            }
+            },
+            pokemonByName: {
+                type: GraphQLList(PokemonType),
+                args: {
+                    name: { type: GraphQLString },
+                },
+                resolve: (root, args, context, info) => {
+                    return PokemonModel.find( {name: {"$regex": args.name, "$options": "i"} } ).exec();
+                }
+            },
+
         }
     })
 })
 
-app.use("/graphql", ExpressGraphQL({
+app.use("/pokemon", ExpressGraphQL({
     schema,
     graphiql: true
 }))

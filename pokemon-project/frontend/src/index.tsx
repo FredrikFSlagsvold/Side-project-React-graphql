@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient ({
-  uri: "",
+  uri: "http://localhost:5001/pokemon",
   cache: new InMemoryCache(),
 })
 
