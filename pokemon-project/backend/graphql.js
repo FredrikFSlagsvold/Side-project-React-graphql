@@ -11,7 +11,6 @@ const{
     GraphQLInt,
     GraphQLObjectType
 } = require("graphql")
-
 var app = Express();
 var cors = require("cors");
 
@@ -49,8 +48,16 @@ const schema = new GraphQLSchema({
         fields: {
             pokemon: {
                 type: GraphQLList(PokemonType),
+                args: {
+                    offset: { type: GraphQLInt },
+                    limit: { type: GraphQLInt },
+                },
                 resolve: (root, args, context, info) => {
-                    return PokemonModel.find().exec();
+                    return PokemonModel
+                    .find()
+                    .skip(args.offset)
+                    .limit(args.limit)
+                    .exec();
                 }
             },
             pokemonByName: {
@@ -59,7 +66,7 @@ const schema = new GraphQLSchema({
                     name: { type: GraphQLString },
                 },
                 resolve: (root, args, context, info) => {
-                    return PokemonModel.find( {name: {"$regex": args.name, "$options": "i"} } ).exec();
+                    return PokemonModel.find( {name: {"$regex": args.name, "$options": "i"} } ).exec()
                 }
             },
 
