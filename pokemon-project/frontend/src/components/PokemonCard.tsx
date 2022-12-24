@@ -20,7 +20,7 @@ export default function PokemonCard({id, num, name, type, weaknesses, img}: Poke
             }}>
 
             <h1>{name}</h1>
-            <img src={img} style={{
+            <img src={img} alt={"img"} style={{
                 height: "150px",
                 width: "150px"
             }}/>

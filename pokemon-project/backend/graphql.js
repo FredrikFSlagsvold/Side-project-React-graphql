@@ -5,9 +5,7 @@ const{
     GraphQLID,
     GraphQLString,
     GraphQLList,
-    GraphQLType,
     GraphQLSchema,
-    GraphQLNonNull,
     GraphQLInt,
     GraphQLObjectType
 } = require("graphql")
@@ -28,6 +26,20 @@ const PokemonModel = mongoose.model("pokemon", {
     img: String,
     type: [String],
     weaknesses: [String],
+    next_evolution: [
+        {
+            num: String,
+            name: String,
+        }
+    ],
+})
+
+const NextEvolutionType = new GraphQLObjectType({
+    name: "next_evolution",
+    fields: {
+        num: { type: GraphQLString },
+        name: { type: GraphQLString },
+    }
 })
 
 const PokemonType = new GraphQLObjectType({
@@ -39,6 +51,7 @@ const PokemonType = new GraphQLObjectType({
         img: { type: GraphQLString },
         type: { type: GraphQLList(GraphQLString) },
         weaknesses: { type: GraphQLList(GraphQLString) },
+        next_evolution: { type: GraphQLList(NextEvolutionType)}
     },
 })
 
@@ -60,13 +73,37 @@ const schema = new GraphQLSchema({
                     .exec();
                 }
             },
-            pokemonByName: {
+            //filter bestemmer om man skal filtrere på navn, type etc.
+            pokemonBySearch: {
                 type: GraphQLList(PokemonType),
                 args: {
-                    name: { type: GraphQLString },
+                    text: { type: GraphQLString },
+                    offset: { type: GraphQLInt },
+                    limit: { type: GraphQLInt },
+                    filter: { type: GraphQLString },
+                    sort: { type: GraphQLString }
                 },
                 resolve: (root, args, context, info) => {
-                    return PokemonModel.find( {name: {"$regex": args.name, "$options": "i"} } ).exec()
+                    return PokemonModel
+                    .find({[args.filter]: {"$regex": args.text, "$options": "i"} } )
+                    .skip(args.offset)
+                    .limit(args.limit)
+                    .exec()
+                }
+            },
+            pokemonByTypeSearch: {
+                type: GraphQLList(PokemonType),
+                args: {
+                    type: { type: GraphQLString },
+                    offset: { type: GraphQLInt },
+                    limit: { type: GraphQLInt },
+                },
+                resolve: (root, args, context, info) => {
+                    return PokemonModel
+                    .find( {type: {"$regex": args.type, "$options": "i"} } )
+                    .skip(args.offset)
+                    .limit(args.limit)
+                    .exec()
                 }
             },
 

@@ -8,6 +8,7 @@ const cache = new InMemoryCache({
     Query: {
       fields: {
         pokemon: offsetLimitPagination(),
+        pokemonBySearch: offsetLimitPagination(),
       }
     }
   }
