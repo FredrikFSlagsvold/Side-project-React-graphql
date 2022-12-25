@@ -1,7 +1,8 @@
-import { useQuery, gql } from "@apollo/client"
+import { useQuery } from "@apollo/client"
 import PokemonCard from "../components/PokemonCard"
 import { InView } from "react-intersection-observer";
-import { GET_ALL_POKEMON, POKEMON_BY_SEARCH } from '../utils/Queries';
+import { POKEMON_BY_SEARCH } from '../utils/Queries';
+import { useEffect } from "react";
 
 type MovieSearchProps = {
     text: String,
@@ -25,17 +26,23 @@ export default function PokemonPage({text, filter, offset, limit}: MovieSearchPr
     //Hvis man skal bruke GET_ALL_POKEMON må man bytte fra data.pokemonBySearch til data.pokemon (fieldet tilhørende querien). 
     //Det gjelder også for inView-delen for at pagineringen skal fungere.
 
-    const { loading, error, data, fetchMore } = useQuery(POKEMON_BY_SEARCH, {
+    const { loading, error, data, refetch, fetchMore } = useQuery(POKEMON_BY_SEARCH, {
         variables: {
             text: text,
-            filter: filter, //name
-            offset: offset, //0
-            limit: limit //15
+            filter: filter,
+            offset: offset,
+            limit: limit
         }
     });
 
+    useEffect(() => {
+        refetch()
+    }, [text])
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error : {error.message}</p>
+
+    console.log(data)
 
     return (
 

@@ -6,6 +6,7 @@ export default function HomePage(){
 
     const [searchText, setSearchText] = useState("")
     const [filter, setFilter] = useState("name")
+    console.log(searchText)
 
     return (
         <div>
