@@ -9,6 +9,8 @@ type MovieSearchProps = {
     filter: String,
     offset: number,
     limit: number
+    sortType: String,
+    order: String
 }
 
 
@@ -21,7 +23,7 @@ type PokemonProps ={
     img: string
 }
 
-export default function PokemonPage({text, filter, offset, limit}: MovieSearchProps){
+export default function PokemonPage({text, filter, offset, limit, sortType, order}: MovieSearchProps){
 
     //Hvis man skal bruke GET_ALL_POKEMON må man bytte fra data.pokemonBySearch til data.pokemon (fieldet tilhørende querien). 
     //Det gjelder også for inView-delen for at pagineringen skal fungere.
@@ -31,13 +33,15 @@ export default function PokemonPage({text, filter, offset, limit}: MovieSearchPr
             text: text,
             filter: filter,
             offset: offset,
-            limit: limit
+            limit: limit,
+            sortType: sortType,
+            sort: order
         }
     });
 
     useEffect(() => {
         refetch()
-    }, [text, filter])
+    }, [text, filter, sortType, order])
 
     
     if (loading) return <p>Loading...</p>;
@@ -65,8 +69,6 @@ export default function PokemonPage({text, filter, offset, limit}: MovieSearchPr
                             variables: {
                                 offset: currentLength,
                                 limit: limit*2,
-                                text: text,
-                                filter: filter
                             }
                         })
                     }

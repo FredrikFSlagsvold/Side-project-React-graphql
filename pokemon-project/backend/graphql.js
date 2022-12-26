@@ -81,13 +81,15 @@ const schema = new GraphQLSchema({
                     offset: { type: GraphQLInt },
                     limit: { type: GraphQLInt },
                     filter: { type: GraphQLString },
+                    sortType: { type: GraphQLString },
                     sort: { type: GraphQLString }
                 },
                 resolve: (root, args, context, info) => {
                     return PokemonModel
-                    .find({[args.filter]: {"$regex": args.text, "$options": "i"} } )
+                    .find({[args.filter]: {"$regex": args.text, "$options": "i"} })
                     .skip(args.offset)
                     .limit(args.limit)
+                    .sort({[args.sortType]: args.sort})
                     .exec()
                 }
             },
