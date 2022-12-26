@@ -2,6 +2,9 @@ import { useState } from "react";
 import PokemonPage from "./PokemonPage";
 import SearchField from "./SearchField";
 
+//knytter Søkefunksjonaliteten sammen med Query. searchText, filter, sortType og order (sort) blir definert i Searchfield.
+//Disse variablene blir så satt inn som variabler(props) i Pokemonpage og setter i gang queries.
+
 export default function HomePage(){
 
     const [searchText, setSearchText] = useState("")
