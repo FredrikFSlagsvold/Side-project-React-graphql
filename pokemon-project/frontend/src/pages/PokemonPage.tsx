@@ -39,11 +39,11 @@ export default function PokemonPage({text, filter, offset, limit}: MovieSearchPr
         refetch()
     }, [text])
 
+    
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error : {error.message}</p>
 
-    console.log(data)
-
+    
     return (
 
         <div style={{
