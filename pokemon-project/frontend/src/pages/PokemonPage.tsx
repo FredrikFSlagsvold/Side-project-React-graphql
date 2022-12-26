@@ -37,7 +37,7 @@ export default function PokemonPage({text, filter, offset, limit}: MovieSearchPr
 
     useEffect(() => {
         refetch()
-    }, [text])
+    }, [text, filter])
 
     
     if (loading) return <p>Loading...</p>;
@@ -64,7 +64,7 @@ export default function PokemonPage({text, filter, offset, limit}: MovieSearchPr
                         await fetchMore({
                             variables: {
                                 offset: currentLength,
-                                limit: limit,
+                                limit: limit*2,
                                 text: text,
                                 filter: filter
                             }

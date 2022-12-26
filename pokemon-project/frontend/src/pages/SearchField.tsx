@@ -23,7 +23,9 @@ export default function SearchField( { setSearchText, setFilterText }: searchFie
 
     return (
         <div style={{display: "flex", margin: "20px", justifyContent: "center"}}>
+
             <TextField id="outlined-basic" label="Search" variant="outlined" onChange={debouncedEventHandler} />
+
             <FormControl>
                 <InputLabel sx={{ marginLeft: "10px" }}>Filter category</InputLabel>
                 <Select
@@ -38,9 +40,9 @@ export default function SearchField( { setSearchText, setFilterText }: searchFie
                     <MenuItem value={"type"}>Type</MenuItem>
                     <MenuItem value={"num"}>Num</MenuItem>
                     <MenuItem value={"weaknesses"}>Weaknesses</MenuItem>
-
                 </Select>
             </FormControl>
+            
         </div>
     )
 }
