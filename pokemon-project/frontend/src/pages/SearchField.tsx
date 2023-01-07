@@ -51,7 +51,7 @@ export default function SearchField( { setSearchText, setFilterText, setSortType
                     <MenuItem value={"name"}>Name</MenuItem>
                     <MenuItem value={"type"}>Type</MenuItem>
                     <MenuItem value={"num"}>Num</MenuItem>
-                    <MenuItem value={"weaknesses"}>Weaknesses</MenuItem>
+                    <MenuItem value={"weaknesses"}>Weakness</MenuItem>
                 </Select>
             </FormControl>
 
@@ -71,7 +71,7 @@ export default function SearchField( { setSearchText, setFilterText, setSortType
             </FormControl>
 
             <FormControl>
-                <InputLabel sx={{ marginLeft: "10px" }}>Order By</InputLabel>
+                <InputLabel sx={{ marginLeft: "10px" }}>Order</InputLabel>
                 <Select
                     id="orderField"
                     label="orderField"

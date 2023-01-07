@@ -7,7 +7,7 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        pokemon: offsetLimitPagination(),
+        pokemon: offsetLimitPagination(), //egentlig unødvendig da queryen "pokemon" ikke brukes.
         pokemonBySearch: offsetLimitPagination(),
       }
     }
