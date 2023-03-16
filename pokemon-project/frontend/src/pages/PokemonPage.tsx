@@ -41,7 +41,7 @@ export default function PokemonPage({text, filter, offset, limit, sortType, orde
 
     useEffect(() => {
         refetch()
-    }, [text, filter, sortType, order])
+    }, [text, filter, sortType, order]) //kan også bare bruke "data"
 
     
     if (loading) return <p>Loading...</p>;
