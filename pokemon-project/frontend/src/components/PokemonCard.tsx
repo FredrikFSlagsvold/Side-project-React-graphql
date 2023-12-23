@@ -5,8 +5,8 @@ type PokemonProps ={
     id: number,
     num: number,
     name: String,
-    type: [String],
-    weaknesses: [String],
+    type: String[],
+    weaknesses: String[],
     img: string
 }
 
