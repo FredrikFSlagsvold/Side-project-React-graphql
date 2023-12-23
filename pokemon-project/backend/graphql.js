@@ -108,6 +108,15 @@ const schema = new GraphQLSchema({
                     .exec()
                 }
             },
+            singlePokemonByName: {
+                type: PokemonType,
+                args: {
+                    name: { type: GraphQLString }
+                },
+                resolve: (root, args) => {
+                    return PokemonModel.findOne({ name: args.name }).exec();
+                }
+            }
 
         }
     })

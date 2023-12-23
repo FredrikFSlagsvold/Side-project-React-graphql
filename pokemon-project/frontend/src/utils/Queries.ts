@@ -42,3 +42,20 @@ export const POKEMON_BY_TYPESEARCH = gql`
         }
     }
 `;
+
+export const SINGLE_POKEMON_BY_NAME = gql`
+    query($name: String){
+      singlePokemonByName(name: $name){
+        id
+        num
+        name
+        type
+        weaknesses
+        img
+        next_evolution{
+          num
+          name
+        }
+      }
+    }      
+`;
