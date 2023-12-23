@@ -19,7 +19,7 @@ export default function PokemonCard({id, num, name, type, weaknesses, img}: Poke
             fontFamily: "Verdana, sans-seriff",
             margin: "20px",
             }}
-            onClick={() => console.log(name)}>
+            >
             <Link to={`/pokemon/${name}`} style={{textDecoration: "none", color: "black"}}>
                 <div>
 
