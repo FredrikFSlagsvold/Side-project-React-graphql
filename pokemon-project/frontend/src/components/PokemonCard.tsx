@@ -1,5 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import '../styles/PokemonStyles.css';
+
 
 type PokemonProps ={
     id: number,
@@ -13,21 +15,13 @@ type PokemonProps ={
 export default function PokemonCard({id, num, name, type, weaknesses, img}: PokemonProps){
 
     return (
-        <div style={{
-            height: "640px", 
-            width: "200px",
-            fontFamily: "Verdana, sans-seriff",
-            margin: "20px",
-            }}
-            >
-            <Link to={`/pokemon/${name}`} style={{textDecoration: "none", color: "black"}}>
+        <div className="pokemonCard">
+
+            <Link to={`/pokemon/${name}`} className="pokemonLink">
                 <div>
 
                     <h1>{name}</h1>
-                    <img src={img} alt={"img"} style={{
-                        height: "150px",
-                        width: "150px"
-                    }}/>
+                    <img src={img} alt={"img"} className="pokemonCard img"/>
 
                     <h3>No: {num}</h3>
                     <h3>Types: </h3>

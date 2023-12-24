@@ -50,12 +50,7 @@ export default function PokemonPage({text, filter, offset, limit, sortType, orde
     
     return (
 
-        <div style={{
-            display: "flex", 
-            flexWrap: "wrap", 
-            justifyContent: "center", 
-            width: "100%"
-            }}>
+        <div className="pokemonPageContainer">
                 
             {data?.pokemonBySearch?.map(({id, name, num, type, weaknesses, img}: PokemonProps) => { 
                 return(

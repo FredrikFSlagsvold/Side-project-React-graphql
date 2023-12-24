@@ -1,0 +1,30 @@
+.pokemonPageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.pokemonCard {
+    height: 640px;
+    width: 200px;
+    font-family: Verdana, sans-serif;
+    margin: 20px;
+}
+
+.pokemonCard img {
+    height: 150px;
+    width: 150px;
+}
+
+.pokemonLink {
+    text-decoration: none;
+    color: black;
+}
+
+.pageHeader {
+    font-family: verdana, sans-serif;
+    text-align: center;
+    background-color: red;
+    color: white;
+}
