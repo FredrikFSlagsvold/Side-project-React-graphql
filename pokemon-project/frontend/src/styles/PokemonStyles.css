@@ -10,11 +10,18 @@
     width: 200px;
     font-family: Verdana, sans-serif;
     margin: 20px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
 }
 
 .pokemonCard img {
     height: 150px;
     width: 150px;
+}
+
+.pokemonCard:hover {
+    transform: translateY(-3px);
+    background-color: #f0f0f0;
 }
 
 .pokemonLink {
