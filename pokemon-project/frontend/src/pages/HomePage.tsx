@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PokemonPage from "./PokemonPage";
-import SearchField from "./SearchField";
+import SearchField from "../components/SearchField";
 
 //knytter Søkefunksjonaliteten sammen med Query. searchText, filter, sortType og order (sort) blir definert i Searchfield.
 //Disse variablene blir så satt inn som variabler(props) i PokemonPage og setter i gang queries.
