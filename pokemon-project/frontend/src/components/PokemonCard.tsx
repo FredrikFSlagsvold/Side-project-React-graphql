@@ -25,16 +25,18 @@ export default function PokemonCard({id, num, name, type, weaknesses, img}: Poke
 
                     <h3>No: {num}</h3>
                     <h3>Types: </h3>
-                    {type.map((type: String) => { 
+                    {type.map((type: String, index: number) => { 
                         return (
-                            <p>{type}</p>
-                    )})}
+                            <p key={type + String(index)}>{type}</p>
+                        )
+                    })}
 
-                    <h3>weaknesses: </h3>
-                    {weaknesses.map((weakness: String) => {
+                    {weaknesses.map((weakness: String, index: number) => {
                         return (
-                            <p>{weakness}</p>
-                    )})}
+                            <p key={weakness + String(index)}>{weakness}</p>
+                        )
+                    })}
+
                 </div>
             </Link>
         </div>

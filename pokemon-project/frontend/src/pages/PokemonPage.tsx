@@ -54,7 +54,7 @@ export default function PokemonPage({text, filter, offset, limit, sortType, orde
                 
             {data?.pokemonBySearch?.map(({id, name, num, type, weaknesses, img}: PokemonProps) => { 
                 return(
-                    <PokemonCard id={id} num={num} name={name} type={type} weaknesses={weaknesses} img={img}/>
+                    <PokemonCard key={id} id={id} num={num} name={name} type={type} weaknesses={weaknesses} img={img}/>
                 )})}
             {(
                 <InView onChange={async (inView) => {

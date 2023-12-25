@@ -24,6 +24,10 @@
     background-color: #f0f0f0;
 }
 
+.pokemonCard:active {
+    transform: translateY(1px);
+}
+
 .pokemonLink {
     text-decoration: none;
     color: black;
